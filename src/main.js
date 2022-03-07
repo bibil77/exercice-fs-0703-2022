@@ -1,8 +1,8 @@
 const save = require('./save.js')
 
 function main() {
-    save({ firstName: 'Dylan', lastName: 'DE SOUSA' });
-    save({ firstName: 'John', lastName: 'DOE' });
+    save({id: 1, firstName: 'Dylan', lastName: 'DE SOUSA' });
+    save({id: 2, firstName: 'John', lastName: 'DOE' });
   }
   
   main();
