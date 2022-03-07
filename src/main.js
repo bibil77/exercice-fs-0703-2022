@@ -1,8 +1,10 @@
-const save = require('./save.js')
+const {save, deleteUser, updateUser} = require('./save.js')
+
 
 function main() {
-    save({id: 1, firstName: 'Dylan', lastName: 'DE SOUSA' });
-    save({id: 2, firstName: 'John', lastName: 'DOE' });
+    updateUser(1, {id: 1, firstName: 'benjamin', lastName: 'dupin' });
+    // save({id: 2, firstName: 'John', lastName: 'DOE' });
+    // deleteUser(1);
   }
   
   main();

@@ -1,13 +1,5 @@
 const fs = require('fs');
-// const users = require('../data/users.json')
 
-// console.log(typeof users, users)
-// const usersJson = JSON.parse(users);
-// console.log(usersJson);
-
-// users.users.push({test: 'test'})
-// users["test"] = "test2"
-// console.log(users);
 function save(person) {
     try {
         const data = JSON.parse(fs.readFileSync('./data/user.json', 'utf-8'));
@@ -20,7 +12,43 @@ function save(person) {
     }
 }
 
-module.exports = save;
+function deleteUser(id){
+    let result = [];
+    const data = JSON.parse(fs.readFileSync('./data/user.json', 'utf-8'));
+
+    for (let i=0; i < data.users.length; i++){
+        if(data.users[i].id === id){
+           continue 
+        }
+        // console.log(data.users[i]);
+        result.push(data.users[i])
+    }
+    data.users = result
+    const rawUsers = JSON.stringify(data, null, 4)
+    fs.writeFileSync("./data/user.json", rawUsers)
+    // console.log(data.users[1].id);
+}
+
+function updateUser(id, updatedPerson){
+    const data = JSON.parse(fs.readFileSync('./data/user.json', 'utf-8'));
+
+    for (let i=0; i < data.users.length; i++){
+        if(data.users[i].id === id){ 
+            data.users[i] = updatedPerson
+            break;
+        }
+    }
+
+    const rawUsers = JSON.stringify(data, null, 4)
+    fs.writeFileSync("./data/user.json", rawUsers)
+    // console.log(data.users[1].id);
+}
+
+module.exports = {
+    save,
+    deleteUser,
+    updateUser
+} 
 /**
      * 1. First you have to load the "data/users.json" file to retrieve an array of users
      * See: fs.readFileSync function
